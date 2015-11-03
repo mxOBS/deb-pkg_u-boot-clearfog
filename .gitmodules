@@ -1,0 +1,4 @@
+[submodule "u-boot"]
+	path = u-boot
+	url = https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x.git
+	branch = u-boot-2013.01-15t1-clearfog
