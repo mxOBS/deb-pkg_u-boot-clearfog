@@ -11,11 +11,11 @@ export DH_VERBOSE=1
 export DESTDIR=$(CURDIR)/debian/u-boot-marvell-clearfog
 
 %:
-	dh $@ --parallel
+	dh $@ --parallel --sourcedirectory=u-boot --builddirectory=u-boot
 
 override_dh_auto_configure:
-	make armada_38x_clearfog_config
-	make u-boot.mmc
+	cd u-boot; make armada_38x_clearfog_config
+	cd u-boot; make u-boot.mmc
 
 override_dh_auto_install:
-	install -v -D -m 0644 u-boot.mmc $(DESTDIR)/boot/u-boot-clearfog.mmc
+	cd u-boot; install -v -D -m 0644 u-boot.mmc $(DESTDIR)/boot/u-boot-clearfog.mmc

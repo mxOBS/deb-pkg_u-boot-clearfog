@@ -53,6 +53,7 @@ This package contains documentation for u-boot firmware
 %setup -q -n u-boot-marvell-clearfog-2013.01pkg1
 
 %build
+cd ut-boot
 %if 0%{?suse_version} > 1320
 export CC=gcc-4.8 CXX=g++-4.8
 %endif
@@ -60,6 +61,7 @@ make %{?jobs:-j %jobs} CFLAGS="$RPM_OPT_FLAGS" armada_38x_clearfog_config
 make %{?jobs:-j %jobs} u-boot.mmc
 
 %install
+cd ut-boot
 install -D -m 0644 u-boot.mmc %{buildroot}/boot/u-boot-clearfog.mmc
 
 %files
