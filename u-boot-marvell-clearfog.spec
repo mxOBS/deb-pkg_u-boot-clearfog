@@ -25,8 +25,7 @@ Summary:        The u-boot firmware by Marvell for the Clearfog board
 License:        GPL-2.0
 Group:          System/Boot
 Url:            https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
-Source:         u-boot-marvell-clearfog_2013.01pkg1.tar.xz
-Source300:      u-boot-rpmlintrc
+Source:         u-boot-marvell-clearfog_2013.01pkg1.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Provides:       u-boot-loader
 Conflicts:      otherproviders(u-boot-loader)
@@ -51,9 +50,10 @@ This package contains documentation for u-boot firmware
 
 %prep
 %setup -q -n u-boot-marvell-clearfog-2013.01pkg1
+sed -i "s;-msoft-float;-mfloat-abi=hard -mfpu=vfpv3;g" u-boot/arch/arm/cpu/armv7/config.mk
 
 %build
-cd ut-boot
+cd u-boot
 %if 0%{?suse_version} > 1320
 export CC=gcc-4.8 CXX=g++-4.8
 %endif
@@ -61,23 +61,23 @@ make %{?jobs:-j %jobs} CFLAGS="$RPM_OPT_FLAGS" armada_38x_clearfog_config
 make %{?jobs:-j %jobs} u-boot.mmc
 
 %install
-cd ut-boot
+cd u-boot
 install -D -m 0644 u-boot.mmc %{buildroot}/boot/u-boot-clearfog.mmc
 
 %files
 %defattr(-,root,root)
 /boot/*
-%doc COPYING CREDITS README
+%doc u-boot/COPYING u-boot/CREDITS u-boot/README
 
 %files doc
 %defattr(-,root,root)
 # Generic documents
-%doc doc/README.JFFS2 doc/README.JFFS2_NAND doc/README.commands
-%doc doc/README.autoboot doc/README.commands doc/README.console doc/README.dns
-%doc doc/README.hwconfig doc/README.nand doc/README.NetConsole doc/README.serial_multi
-%doc doc/README.SNTP doc/README.standalone doc/README.update doc/README.usb
-%doc doc/README.video doc/README.VLAN doc/README.silent doc/README.POST doc/README.Modem
+%doc u-boot/doc/README.JFFS2 u-boot/doc/README.JFFS2_NAND u-boot/doc/README.commands
+%doc u-boot/doc/README.autoboot u-boot/doc/README.commands u-boot/doc/README.console u-boot/doc/README.dns
+%doc u-boot/doc/README.hwconfig u-boot/doc/README.nand u-boot/doc/README.NetConsole u-boot/doc/README.serial_multi
+%doc u-boot/doc/README.SNTP u-boot/doc/README.standalone u-boot/doc/README.update u-boot/doc/README.usb
+%doc u-boot/doc/README.video u-boot/doc/README.VLAN u-boot/doc/README.silent u-boot/doc/README.POST u-boot/doc/README.Modem
 # Now any h/w dependent Documentation
-%doc doc/README.ARM-SoC doc/README.ARM-memory-map 
+%doc u-boot/doc/README.ARM-SoC u-boot/doc/README.ARM-memory-map 
 
 %changelog
