@@ -1,4 +1,4 @@
-u-boot-marvell-clearfog (2013.01pkg1) stable; urgency=low
+u-boot-marvell-clearfog (2013.01-1) stable; urgency=low
 
   * Initial packaging
   * c1d6f3e8e315c3843147c74013ed915231774a58
