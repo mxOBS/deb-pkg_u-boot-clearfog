@@ -50,8 +50,11 @@ This package contains documentation for u-boot firmware
 
 %prep
 %setup -q -n u-boot-marvell-clearfog-2013.01pkg1
-cd u-boot; patch -p1 < ../raw-initrd.patch; cd ..
-cd u-boot; patch -p1 < ../armhf.patch; cd ..
+cd u-boot
+patch -p1 < ../raw-initrd.patch
+patch -p1 < ../armhf.patch
+patch -p1 < ../enable-stage-boot.patch
+cd ..
 
 %build
 cd u-boot
