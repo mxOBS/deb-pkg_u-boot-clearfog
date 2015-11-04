@@ -50,7 +50,8 @@ This package contains documentation for u-boot firmware
 
 %prep
 %setup -q -n u-boot-marvell-clearfog-2013.01pkg1
-sed -i "s;-msoft-float;-mfloat-abi=hard -mfpu=vfpv3;g" u-boot/arch/arm/cpu/armv7/config.mk
+cd u-boot; patch -p1 < ../raw-initrd.patch; cd ..
+cd u-boot; patch -p1 < ../armhf.patch; cd ..
 
 %build
 cd u-boot
