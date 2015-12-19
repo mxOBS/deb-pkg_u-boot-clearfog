@@ -20,12 +20,12 @@
 
 Name:           u-boot-marvell-clearfog
 Version:        2013.01
-Release:        1
+Release:        2
 Summary:        The u-boot firmware by Marvell for the Clearfog board
 License:        GPL-2.0
 Group:          System/Boot
 Url:            https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
-Source:         u-boot-marvell-clearfog_2013.01pkg1.tar.gz
+Source:         u-boot-marvell-clearfog_2013.01pkg2.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Provides:       u-boot-loader
 Conflicts:      otherproviders(u-boot-loader)
