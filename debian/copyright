@@ -3,7 +3,7 @@ Upstream-Name: u-boot-marvell-clearfog
 Source: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
 
 Files: *
-Copyright: 2002-2014 Wolfgang Denk, DENX Software Engineering, wd@denx.de
+Copyright: 2002-2016 Wolfgang Denk, DENX Software Engineering, wd@denx.de
            Many more people
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
@@ -13,7 +13,7 @@ License: GPL-2+
  You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
 Files: debian/*
-Copyright: 2014-2015 Josua Mayer <privacy@not.given>
+Copyright: 2014-2016 Josua Mayer <privacy@not.given>
 License: MIT
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal

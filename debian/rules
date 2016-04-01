@@ -14,11 +14,7 @@ export DESTDIR=$(CURDIR)/debian/u-boot-marvell-clearfog
 	dh $@ --parallel --sourcedirectory=u-boot --builddirectory=u-boot
 
 override_dh_auto_configure:
-	cd u-boot; patch -p1 < ../raw-initrd.patch
-	cd u-boot; patch -p1 < ../armhf.patch
-	cd u-boot; patch -p1 < ../enable-stage-boot.patch
-	cd u-boot; make armada_38x_clearfog_config
-	cd u-boot; make u-boot.mmc
+	cd u-boot; make clearfog_defconfig
 
 override_dh_auto_install:
-	cd u-boot; install -v -D -m 0644 u-boot.mmc $(DESTDIR)/boot/u-boot-clearfog.mmc
+	cd u-boot; install -v -D -m 0644 u-boot-spl.kwb $(DESTDIR)/boot/spl-clearfog.kwb

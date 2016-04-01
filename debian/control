@@ -1,4 +1,4 @@
-Source: u-boot-marvell-clearfog
+Source: u-boot-clearfog
 Section: unknown
 Priority: extra
 Maintainer: unknown <unknown>
@@ -8,8 +8,8 @@ Homepage: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-b
 Vcs-Git: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x.git
 Vcs-Browser: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
 
-Package: u-boot-marvell-clearfog
+Package: u-boot-clearfog
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Boot-Loader for SolidRun Clearfog
- Port of U-Boot by Marvell for the SolidRun Clearfog board.
+ Mainline U-Boot built for SolidRun Clearfog.
