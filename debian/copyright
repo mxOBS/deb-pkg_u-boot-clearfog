@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: u-boot-marvell-clearfog
+Upstream-Name: u-boot-clearfog
 Source: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
 
 Files: *
