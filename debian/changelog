@@ -1,3 +1,9 @@
+u-boot-marvell-clearfog (2013.01pkg3) stable; urgency=low
+
+  * build-depend on bc
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Sun, 17 Jul 2016 18:14:39 +0200
+
 u-boot-marvell-clearfog (2013.01pkg2) stable; urgency=high
 
   * f906e3df172e07ac82cdd87b278d7896949262ea
