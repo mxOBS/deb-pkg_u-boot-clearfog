@@ -1,5 +1,5 @@
-u-boot-clearfog (2016.03) stable; urgency=low
+u-boot-clearfog (2016.03) unstable; urgency=low
 
   * Initial release
 
- -- Josua Mayer <josua@linux.site>  Fri, 01 Apr 2016 16:58:13 +0200
+ -- Josua Mayer <josua.mayer97@gmail.com>  Sun, 17 Jul 2016 18:21:11 +0200
