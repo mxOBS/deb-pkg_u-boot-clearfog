@@ -8,12 +8,12 @@ u-boot-marvell-clearfog (2013.01pkg2) stable; urgency=high
 
   * f906e3df172e07ac82cdd87b278d7896949262ea
 
- -- Josua Mayer <josua@linux.site>  Sat, 19 Dec 2015 11:17:09 +0000
+ -- Josua Mayer <josua.mayer97@gmail.com>  Sat, 19 Dec 2015 11:17:09 +0000
 
 u-boot-marvell-clearfog (2013.01pkg1) stable; urgency=low
 
   * Initial packaging
   * c1d6f3e8e315c3843147c74013ed915231774a58
 
- -- Josua Mayer <privacy@not.given>  Tue, 03 Nov 2015 17:15:14 +0100
+ -- Josua Mayer <josua.mayer97@gmail.com>  Tue, 03 Nov 2015 17:15:14 +0100
  
