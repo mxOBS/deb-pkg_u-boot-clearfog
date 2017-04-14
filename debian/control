@@ -9,7 +9,7 @@ Vcs-Git: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x.git
 Vcs-Browser: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
 
 Package: u-boot-marvell-clearfog
-Architecture: any
+Architecture: armel armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Boot-Loader for SolidRun Clearfog
  Port of U-Boot by Marvell for the SolidRun Clearfog board.
