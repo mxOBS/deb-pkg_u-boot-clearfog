@@ -2,7 +2,7 @@ Source: u-boot-clearfog
 Section: kernel
 Priority: extra
 Maintainer: Josua Mayer <josua.mayer97@gmail.com>
-Build-Depends: debhelper (>= 8.0.0), device-tree-compiler, bc
+Build-Depends: debhelper (>= 8.0.0), device-tree-compiler, bc, libssl-dev:native
 Standards-Version: 3.9.3
 Homepage: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
 Vcs-Git: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x.git
