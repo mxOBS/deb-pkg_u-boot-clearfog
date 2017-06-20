@@ -8,13 +8,31 @@
 
 # Uncomment this to turn on verbose mode.
 export DH_VERBOSE=1
+
+# include system information
+include /usr/share/dpkg/architecture.mk
+
+# set CROSS_COMPILE only when cross-compiling
+ARCH=
+CROSS_COMPILE=
+ifneq ($(DEB_HOST_GNU_TYPE),$(DEB_BUILD_GNU_TYPE))
+	CROSS_COMPILE=$(DEB_HOST_GNU_TYPE)-
+	ARCH=$(DEB_HOST_GNU_CPU)
+endif
+
 export DESTDIR=$(CURDIR)/debian/u-boot-clearfog
 
 %:
 	dh $@ --parallel --sourcedirectory=u-boot --builddirectory=u-boot
 
 override_dh_auto_configure:
-	cd u-boot; make clearfog_defconfig
+	cd u-boot; make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) clearfog_defconfig
+
+override_dh_auto_build:
+	dh_auto_build -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+
+override_dh_auto_test:
+	dh_auto_test -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 override_dh_auto_install:
 	cd u-boot; install -v -D -m 0644 u-boot-spl.kwb $(DESTDIR)/boot/spl-clearfog.kwb
