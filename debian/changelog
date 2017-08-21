@@ -1,3 +1,9 @@
+u-boot-clearfog (2017.07) stable; urgency=medium
+
+  * Update to 2017.07
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Mon, 21 Aug 2017 16:26:36 +0200
+
 u-boot-clearfog (2017.07~rc3) unstable; urgency=low
 
   * Update to 2017.07-rc3
