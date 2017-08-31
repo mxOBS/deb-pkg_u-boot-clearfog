@@ -1,3 +1,9 @@
+u-boot-clearfog (2017.07sr1) stable; urgency=medium
+
+  * Add patchset with various improvements including SATA and USB
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Thu, 31 Aug 2017 11:07:03 +0200
+
 u-boot-clearfog (2017.07) stable; urgency=medium
 
   * Update to 2017.07
