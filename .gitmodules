@@ -1,4 +1,4 @@
 [submodule "u-boot"]
 	path = u-boot
-	url = git://git.denx.de/u-boot.git
-	branch = master
+	url = https://github.com/SolidRun/u-boot.git
+	branch = master-a38x
