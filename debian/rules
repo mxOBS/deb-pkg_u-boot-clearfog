@@ -22,7 +22,7 @@ endif
 export DESTDIR=$(CURDIR)/debian/u-boot-clearfog
 
 %:
-	dh $@ --parallel --sourcedirectory=u-boot --builddirectory=u-boot
+	dh $@ --with quilt --parallel --sourcedirectory=u-boot --builddirectory=u-boot
 
 override_dh_auto_configure:
 	cd u-boot; make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) clearfog_defconfig

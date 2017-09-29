@@ -1,0 +1,30 @@
+From 69756bb0b6dfdc79892b944a385e1ece4352910b Mon Sep 17 00:00:00 2001
+From: Josua Mayer <josua.mayer97@gmail.com>
+Date: Fri, 29 Sep 2017 11:43:26 +0000
+Subject: [PATCH] always build with -fPIC and -fPIE
+
+Some compilers (Debian) come preconfigured with these options enabled,
+breaking the build. Thus explicitly disable them.
+---
+ u-boot/arch/arm/config.mk | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/u-boot/arch/arm/config.mk b/u-boot/arch/arm/config.mk
+index 1a77779db4..dfd593ed2b 100644
+--- a/u-boot/arch/arm/config.mk
++++ b/u-boot/arch/arm/config.mk
+@@ -172,3 +172,11 @@ endif
+ EFI_LDS := elf_arm_efi.lds
+ EFI_CRT0 := crt0_arm_efi.o
+ EFI_RELOC := reloc_arm_efi.o
++
++# explicitly disable -fPIC and -fPIE
++# Debian enables those by default otherwise, triggering a
++# SPL image too big
++# error when linking SPL.
++ifeq ($(CONFIG_SPL_BUILD),y)
++PLATFORM_CPPFLAGS += -fno-PIE -fno-PIC
++endif
+-- 
+2.11.0
+
