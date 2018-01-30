@@ -1,15 +1,15 @@
-Source: u-boot-clearfog
+Source: u-boot-imx6-sr
 Section: kernel
 Priority: extra
 Maintainer: Josua Mayer <josua.mayer97@gmail.com>
 Build-Depends: debhelper (>= 8.0.0), quilt, device-tree-compiler, bc, libssl-dev:native
 Standards-Version: 3.9.3
-Homepage: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
-Vcs-Git: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x.git
-Vcs-Browser: https://github.com/MarvellEmbeddedProcessors/u-boot-armada38x/tree/u-boot-2013.01-15t1-clearfog
+Homepage: https://github.com/SolidRun/u-boot/
+Vcs-Git: https://github.com/SolidRun/u-boot/
+Vcs-Browser: https://github.com/SolidRun/u-boot/tree/master-mx6
 
-Package: u-boot-clearfog
+Package: u-boot-imx6-sr
 Architecture: armel armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Boot-Loader for SolidRun Clearfog
- Mainline U-Boot built for SolidRun Clearfog.
+Description: Boot-Loader for SolidRun i.MX6 devices
+ SolidRun U-Boot for all Hummingboards, and the Cubox-i.
