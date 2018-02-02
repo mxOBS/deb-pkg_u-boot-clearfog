@@ -1,3 +1,9 @@
+u-boot-imx6-sr (2017.11~rc2+1) stable; urgency=low
+
+  * Update DTB names with emmc suffix where applicable
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Fri, 02 Feb 2018 17:15:23 +0100
+
 u-boot-imx6-sr (2017.11~rc2) stable; urgency=low
 
   * Initial release
