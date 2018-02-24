@@ -2,7 +2,7 @@ Source: u-boot-imx6-sr
 Section: kernel
 Priority: extra
 Maintainer: Josua Mayer <josua.mayer97@gmail.com>
-Build-Depends: debhelper (>= 8.0.0), quilt, device-tree-compiler, bc, libssl-dev:native
+Build-Depends: debhelper (>= 8.0.0), quilt, device-tree-compiler, bc, libssl-dev:native, gcc (>= 4:6.0.0)
 Standards-Version: 3.9.3
 Homepage: https://github.com/SolidRun/u-boot/
 Vcs-Git: https://github.com/SolidRun/u-boot/
