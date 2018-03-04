@@ -22,17 +22,36 @@ endif
 export DESTDIR=$(CURDIR)/debian/u-boot-imx6-sr
 
 %:
-	dh $@ --with quilt --parallel --sourcedirectory=u-boot --builddirectory=u-boot
+	dh $@ --with quilt --parallel --sourcedirectory=u-boot
 
 override_dh_auto_configure:
-	cd u-boot; make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) mx6cuboxi_defconfig
+	make -C u-boot O=../build-emmc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-sdhc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	#make -C u-boot O=../build-sata ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-spi ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+
+	cd build-emmc; ./source/scripts/kconfig/merge_config.sh ./source/configs/mx6cuboxi_defconfig ../config/01-emmc.conf ../config/10-version.conf
+	cd build-sdhc; ./source/scripts/kconfig/merge_config.sh ./source/configs/mx6cuboxi_defconfig ../config/01-sdhc.conf ../config/10-version.conf
+	#cd build-sata; ./source/scripts/kconfig/merge_config.sh ./source/configs/mx6cuboxi_defconfig ../config/01-sata.conf ../config/10-version.conf
+	cd build-spi; ./source/scripts/kconfig/merge_config.sh ./source/configs/mx6cuboxi_defconfig ../config/01-spi.conf ../config/10-version.conf
 
 override_dh_auto_build:
-	dh_auto_build -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-emmc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-sdhc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	#dh_auto_build --builddirectory=build-sata -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-spi -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 override_dh_auto_test:
-	dh_auto_test -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 override_dh_auto_install:
-	cd u-boot; install -v -D -m 0644 SPL $(DESTDIR)/boot/cubox-i-spl.bin
-	cd u-boot; install -v -D -m 0644 u-boot.img $(DESTDIR)/boot/u-boot.img
+	cd build-emmc; install -v -D -m 0644 SPL $(DESTDIR)/boot/spl-cuboxi-emmc.bin
+	cd build-emmc; install -v -D -m 0644 u-boot.img $(DESTDIR)/boot/u-boot-cuboxi-emmc.img
+	cd build-sdhc; install -v -D -m 0644 SPL $(DESTDIR)/boot/spl-cuboxi-sdhc.bin
+	cd build-sdhc; install -v -D -m 0644 u-boot.img $(DESTDIR)/boot/u-boot-cuboxi-sdhc.img
+	#cd build-sata; install -v -D -m 0644 SPL $(DESTDIR)/boot/spl-cuboxi-sata.bin
+	#cd build-sata; install -v -D -m 0644 u-boot.img $(DESTDIR)/boot/u-boot-cuboxi-sata.img
+	cd build-spi; install -v -D -m 0644 SPL $(DESTDIR)/boot/spl-cuboxi-spi.bin
+	cd build-spi; install -v -D -m 0644 u-boot.img $(DESTDIR)/boot/u-boot-cuboxi-spi.img
+
+override_dh_auto_clean:
+	rm -rf build-*
