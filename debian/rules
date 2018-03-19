@@ -22,16 +22,70 @@ endif
 export DESTDIR=$(CURDIR)/debian/u-boot-clearfog
 
 %:
-	dh $@ --with quilt --parallel --sourcedirectory=u-boot --builddirectory=u-boot
+	dh $@ --with quilt --parallel --sourcedirectory=u-boot
 
 override_dh_auto_configure:
-	cd u-boot; make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) clearfog_defconfig
+	make -C u-boot O=../build-pro-emmc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-pro-sdhc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-pro-sata ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-pro-spi ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-pro-uart ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+
+	make -C u-boot O=../build-base-emmc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-base-sdhc ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-base-sata ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-base-spi ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+	make -C u-boot O=../build-base-uart ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) defconfig
+
+	cd build-pro-emmc; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-pro-emmc.conf ../config/10-version.conf
+	cd build-pro-sdhc; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-pro-sdhc.conf ../config/10-version.conf
+	cd build-pro-sata; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-pro-sata.conf ../config/10-version.conf
+	cd build-pro-spi; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-pro-spi.conf ../config/10-version.conf
+	cd build-pro-uart; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-pro-uart.conf ../config/10-version.conf
+
+	cd build-base-emmc; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-base-emmc.conf ../config/10-version.conf
+	cd build-base-sdhc; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-base-sdhc.conf ../config/10-version.conf
+	cd build-base-sata; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-base-sata.conf ../config/10-version.conf
+	cd build-base-spi; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-base-spi.conf ../config/10-version.conf
+	cd build-base-uart; ./source/scripts/kconfig/merge_config.sh ./source/configs/clearfog_defconfig ../config/01-base-uart.conf ../config/10-version.conf
 
 override_dh_auto_build:
-	dh_auto_build -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-pro-emmc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-pro-sdhc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-pro-sata -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-pro-spi -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-pro-uart -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+
+	dh_auto_build --builddirectory=build-base-emmc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-base-sdhc -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-base-sata -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-base-spi -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	dh_auto_build --builddirectory=build-base-uart -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 override_dh_auto_test:
-	dh_auto_test -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
+	#dh_auto_test -- ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 override_dh_auto_install:
-	cd u-boot; install -v -D -m 0644 u-boot-spl.kwb $(DESTDIR)/boot/spl-clearfog.kwb
+	install -v -D -m 0644 build-pro-emmc/u-boot-spl-mmc.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-pro-emmc.kwb
+	install -v -D -m 0644 build-pro-sdhc/u-boot-spl-sdhc.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-pro-sdhc.kwb
+	install -v -D -m 0644 build-pro-sata/u-boot-spl-sata.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-pro-sata.kwb
+	install -v -D -m 0644 build-pro-spi/u-boot-spl-spi.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-pro-spi.kwb
+	install -v -D -m 0644 build-pro-uart/u-boot-spl-uart.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-pro-uart.kwb
+	install -v -D -m 0644 build-base-emmc/u-boot-spl-mmc.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-base-emmc.kwb
+	install -v -D -m 0644 build-base-sdhc/u-boot-spl-sdhc.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-base-sdhc.kwb
+	install -v -D -m 0644 build-base-sata/u-boot-spl-sata.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-base-sata.kwb
+	install -v -D -m 0644 build-base-spi/u-boot-spl-spi.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-base-spi.kwb
+	install -v -D -m 0644 build-base-uart/u-boot-spl-uart.kwb $(DESTDIR)/boot/u-boot-spl-clearfog-base-uart.kwb
+
+override_dh_auto_clean:
+	rm -rf build-pro-emmc 
+	rm -rf build-pro-sdhc
+	rm -rf build-pro-sata
+	rm -rf build-pro-spi
+	rm -rf build-pro-uart
+	rm -rf build-base-emmc 
+	rm -rf build-base-sdhc
+	rm -rf build-base-sata
+	rm -rf build-base-spi
+	rm -rf build-base-uart
+	dh_auto_clean
