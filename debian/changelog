@@ -1,3 +1,9 @@
+u-boot-clearfog (2018.01) stable; urgency=medium
+
+  * Update to 2018.01
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Mon, 19 Mar 2018 16:48:44 +0100
+
 u-boot-clearfog (2017.07sr1) stable; urgency=medium
 
   * Add patchset with various improvements including SATA and USB
