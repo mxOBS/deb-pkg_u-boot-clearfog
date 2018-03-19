@@ -1,3 +1,9 @@
+u-boot-imx6-sr (2018.01+2) stable; urgency=medium
+
+  * update
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Mon, 19 Mar 2018 16:33:51 +0100
+
 u-boot-imx6-sr (2018.01+1) stable; urgency=low
 
   * build flavours for emmc, sdhc, sata and spi
